@@ -1,0 +1,11 @@
+The use of Semaphores minimizes the inherent unfairness that is found in mutex. This is due to the difference in the way that semaphores and mutexes are implemented.
+
+An inherent trait that makes mutexes unfair in this particular problem is that there is a potential for the race condition between a thread that is just entering and a thread that was just woken up. The thread that just entered could take the key and go in before the thread that just woke up does.
+
+Semaphores do not encounter this problem due the counter that it holds and its implicit queue implementation. This helps to minimize the race condition by automically waking up threads and letting threads in. While at the same time, it allows multiple threads run concurrently if there is room for them.
+
+The difference between these two implementations have a large effect on the fairness of queue for the well as the number of people grow. 
+
+The distribution of waiting time is much more concentrated with semaphores, meaning each person waits roughly the same amount of time which can be attributed to being fair. 
+
+With mutexes, the distribution of waiting time is much more uniform. meaning people wait a different amount of time each time, which is unfair.
